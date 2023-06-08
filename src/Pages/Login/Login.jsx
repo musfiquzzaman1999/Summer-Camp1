@@ -1,8 +1,11 @@
-import  { useContext } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SocialLogin from '../SocialLogin/SocialLogin';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -10,6 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data) => {
     const { email, password } = data;
@@ -49,6 +53,10 @@ const Login = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="bg-white rounded shadow p-8 max-w-sm w-full">
@@ -61,7 +69,16 @@ const Login = () => {
           </div>
           <div className="mb-4">
             <label className="block text-gray-700">Password</label>
-            <input type="password" name="password" placeholder="password" className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none" {...register('password', { required: 'Password is required' })} />
+            <div className="relative">
+              <input type={showPassword ? "text" : "password"} name="password" placeholder="password" className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none" {...register('password', { required: 'Password is required' })} />
+              <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                {showPassword ? (
+                  <FaEyeSlash className="text-gray-400 cursor-pointer" onClick={togglePasswordVisibility} />
+                ) : (
+                  <FaEye className="text-gray-400 cursor-pointer" onClick={togglePasswordVisibility} />
+                )}
+              </span>
+            </div>
             {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
             <Link to="#" className="text-sm text-gray-600 hover:text-gray-700">Forgot password?</Link>
           </div>
@@ -69,6 +86,7 @@ const Login = () => {
             <button className="bg-blue-500 text-white py-2 px-4 rounded disabled:opacity-50" type="submit">Login</button>
           </div>
         </form>
+        <SocialLogin></SocialLogin>
         <p className="text-center mt-4 text-sm text-gray-600">New Here? <Link to="/signup" className="text-blue-500">Create an account</Link></p>
       </div>
     </div>
