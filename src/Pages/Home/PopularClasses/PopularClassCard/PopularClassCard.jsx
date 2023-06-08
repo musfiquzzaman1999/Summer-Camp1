@@ -1,7 +1,7 @@
 
 
 const PopularClassCard = ({item}) => {
-    const {name,description,students,thumbnail}=item;
+    const {name,description,thumbnail}=item;
     return (
         <div>
            <div className="card card-compact w-96 bg-base-100 shadow-xl">
