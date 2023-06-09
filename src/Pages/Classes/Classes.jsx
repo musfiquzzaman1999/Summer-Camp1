@@ -48,8 +48,9 @@ function Classes() {
           <div
             key={classItem.id}
             className={cardClassName}
-            style={classItem.students === 0 ? { backgroundColor: 'red' } : null}
-          >
+            style={classItem.students===0? 
+              { backgroundColor:'red'}:null}>
+          
             <img src={classItem.thumbnail} alt={classItem.name} className="w-full" />
             <h2 className="text-xl font-bold">{classItem.name}</h2>
             <p className="mb-2">Instructor: {classItem.instructor}</p>
