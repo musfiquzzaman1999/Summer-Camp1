@@ -77,7 +77,7 @@ const NavBar = () => {
           to="/"
           className="btn btn-ghost normal-case text-xl hover:text-gray-300"
         >
-          Bistro Boss
+          Summer Camp
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

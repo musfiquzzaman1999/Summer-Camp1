@@ -22,6 +22,8 @@ import Signup from './Pages/SignUp/SignUp';
 import Classes from './Pages/Classes/Classes';
 import Dashboard from './LayOut/DashBoard';
 import AllUsers from './Pages/dashboard/AllUsers/AllUsers';
+import AddClass from './Pages/dashboard/AddClass';
+import ManageClasses from './Pages/dashboard/ManageClasses';
 
 
 
@@ -63,7 +65,16 @@ const router = createBrowserRouter([
       {
         path:'allusers',
         element:<AllUsers></AllUsers>
+      },
+      {
+        path:'addclass',
+        element:<AddClass></AddClass>
+      },
+      {
+        path:'manageclass',
+        element:<ManageClasses></ManageClasses>
       }
+      
     ]
   }
   

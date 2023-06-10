@@ -32,6 +32,27 @@ const AllUsers = () => {
             }
         })
     }
+   
+   const handleMakeInstractor = user=>{
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount){
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an instructor Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
+   }
+
 
     const handleDelete = user => {
 
@@ -49,7 +70,8 @@ const AllUsers = () => {
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Role</th>
+                            <th>Role Admin</th>
+                            <th>Role Instructor</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -62,8 +84,22 @@ const AllUsers = () => {
                                 <td>{ user.role === 'admin' ? 'admin' :
                                     <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-orange-600  text-white"><FaUserShield></FaUserShield></button> 
                                     }</td>
+
+                                    <td>{ user.role === 'instructor' ? 'instructor' :
+                                    <button onClick={() => handleMakeInstractor(user)} className="btn btn-ghost bg-orange-600  text-white"><FaUserShield></FaUserShield></button> 
+                                    }</td>
+
+
                                 <td><button onClick={() => handleDelete(user)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button></td>
+
+                                
+                               
+
+
+                            
                             </tr>)
+
+                            
                         }
                         
                         

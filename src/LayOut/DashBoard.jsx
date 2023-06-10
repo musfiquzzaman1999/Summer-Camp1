@@ -3,15 +3,16 @@ import { FaHome, FaSignInAlt } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
-// import useInstructorRole from "../hooks/useInstructorRole";
+
 import useAdmin from "../Pages/hooks/useAdmin";
+import useInstructor from "../Pages/hooks/useInstructor";
 
 const Dashboard = () => {
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   // const isAdmin = true;
   const [isAdmin] = useAdmin()
-//   const [isInstructor] = useInstructorRole()
+  const [isInstructor] = useInstructor()
 
   const handleSignOut = () => {
     logOut();
@@ -45,18 +46,18 @@ const Dashboard = () => {
                 <NavLink to="/dashboard/manageclass">Manage Classes</NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/allusers">All</NavLink>
+                <NavLink to="/dashboard/allusers">All Users</NavLink>
               </li>
             </>
-        //   ) : isInstructor ? (
-        //     <>
-        //       <li>
-        //         <NavLink to="/dashboard/addclass">Add Class</NavLink>
-        //       </li>
-        //       <li>
-        //         <NavLink to="/dashboard/myclass">My Class</NavLink>
-        //       </li>
-        //     </>
+          ) : isInstructor ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/addclass">Add Class</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myclass">My Class</NavLink>
+              </li>
+            </>
           ) : (
             <>
               <li>
