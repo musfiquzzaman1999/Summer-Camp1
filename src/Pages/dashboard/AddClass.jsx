@@ -1,36 +1,20 @@
-import  { useState, useEffect, useContext } from 'react';
+import  { useState, useContext } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const AddClass = () => {
-  const{user} =useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [students, setStudents] = useState('');
   const [thumbnail, setThumbnail] = useState('');
-  const [instructorName, setInstructorName] = useState('');
-  const [instructorEmail, setInstructorEmail] = useState('');
-  const [instructorPicture, setInstructorPicture] = useState('');
   const [price, setPrice] = useState('');
 
-  useEffect(() => {
-    // Fetch instructor information
-    const fetchInstructor = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/instructor');
-        const { displayName, email, picture } = response.data;
-        setInstructorName(displayName || '');
-        setInstructorEmail(email || '');
-        setInstructorPicture(picture || '');
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
-    fetchInstructor();
-  }, []);
+  const instructorName = user?.displayName;
+  const instructorEmail = user?.email;
+  const instructorPicture = user?.photoURL;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -66,7 +50,7 @@ const AddClass = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto mt-8 ml-96">
       <h2 className="text-2xl font-bold mb-4">Add a Class</h2>
       <form onSubmit={handleSubmit} className="max-w-md">
         <div className="mb-4">
@@ -127,7 +111,7 @@ const AddClass = () => {
           <input
             type="text"
             id="instructorName"
-            value={user.displayName}
+            value={instructorName}
             className="border border-gray-400 p-2 w-full"
             readOnly
           />
@@ -139,22 +123,21 @@ const AddClass = () => {
           <input
             type="email"
             id="instructorEmail"
-            value={user.email}
+            value={instructorEmail}
             className="border border-gray-400 p-2 w-full"
             readOnly
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="instructorPicture" className="block font-bold mb-1">
+          <label htmlFor="instructorPictureURL" className="block font-bold mb-1">
             Instructor Picture
           </label>
           <input
             type="text"
-            id="instructorPicture"
+            id="instructorPictureURL"
             value={instructorPicture}
-            onChange={(e) => setInstructorPicture(e.target.value)}
             className="border border-gray-400 p-2 w-full"
-            required
+            readOnly
           />
         </div>
         <div className="mb-4">

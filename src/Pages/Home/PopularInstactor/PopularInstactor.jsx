@@ -1,6 +1,5 @@
 import  { useEffect, useState } from 'react';
 
-
 const PopularInstructor = () => {
   const [instructors, setInstructors] = useState([]);
 
@@ -21,13 +20,17 @@ const PopularInstructor = () => {
   return (
     <div className="container mx-auto px-4">
       <h1 className="text-3xl font-bold my-4">Popular Instructors</h1>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {instructors.map((instructor) => (
-          <div key={instructor._id} className="bg-gray-200 p-4 rounded-md">
-            <img src={instructor.thumbnail} alt="Instructor" className="w-full h-32 object-cover mb-4 rounded-md" />
-            <h2 className="text-lg font-semibold">{instructor.name}</h2>
-            <p className="text-sm text-gray-600">Email: {instructor.email}</p>
-            <p className="text-sm text-gray-600">Total Students: {instructor.totalStudents}</p>
+          <div key={instructor.email} >
+           <div className="card card-compact w-96 bg-base-100 shadow-xl">
+  <figure><img src={instructor.thumbnail} alt="Shoes"  /></figure>
+  <div className="card-body">
+    <h2 className="card-title">{instructor.name}</h2>
+    <p>{instructor.description}</p>
+   
+  </div>
+</div>
           </div>
         ))}
       </div>
