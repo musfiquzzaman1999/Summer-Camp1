@@ -25,6 +25,8 @@ import AllUsers from './Pages/dashboard/AllUsers/AllUsers';
 import AddClass from './Pages/dashboard/AddClass';
 import ManageClasses from './Pages/dashboard/ManageClasses';
 import InstructorClassesPage from './Pages/dashboard/InstructorClassesPage';
+import PrivateRoute from './Pages/Route/PrivateRoute';
+import MyCart from './Pages/dashboard/MyCart';
 
 
 
@@ -78,6 +80,10 @@ const router = createBrowserRouter([
       {
         path:'myclass',
         element:<InstructorClassesPage></InstructorClassesPage>
+      },
+      {
+        path:'selected',
+        element:<MyCart></MyCart>
       }
       
     ]
