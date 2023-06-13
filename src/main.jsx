@@ -84,12 +84,12 @@ const router = createBrowserRouter([
         path:'selected',
         element:<MyCart></MyCart>
       },
-      // {
-      //   path:'/payment/:id',
-      //   element:<Payment></Payment>,
-      //   loader:({params})=>fetch(`http://localhost:5000/carts${params.id}`)
+      {
+        path:'payment/:id',
+        element:<Payment></Payment>,
+        loader:({params})=>fetch(`http://localhost:5000/carts${params.id}`)
         
-      // },
+      },
       
     ]
   }

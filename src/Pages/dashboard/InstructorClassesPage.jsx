@@ -22,14 +22,13 @@ const customStyles = {
   },
 };
 
-const InstractorClassesPage = () => {
+const InstructorClassesPage = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedClass, setSelectedClass] = useState({});
   const [className, setClassName] = useState('');
   const [description, setDescription] = useState('');
-  const [students, setStudents] = useState('');
   const [thumbnail, setThumbnail] = useState('');
 
   useEffect(() => {
@@ -42,7 +41,6 @@ const InstractorClassesPage = () => {
     setSelectedClass(classItem);
     setClassName(classItem.name);
     setDescription(classItem.description);
-    setStudents(classItem.students);
     setThumbnail(classItem.thumbnail);
     setShowModal(true);
   };
@@ -52,7 +50,6 @@ const InstractorClassesPage = () => {
     setSelectedClass({});
     setClassName('');
     setDescription('');
-    setStudents('');
     setThumbnail('');
   };
 
@@ -62,10 +59,9 @@ const InstractorClassesPage = () => {
       ...selectedClass,
       name: className,
       description: description,
-      students: students,
       thumbnail: thumbnail,
     };
-  
+
     // Update the class in the backend and then update the state with the updated class
     fetch(`http://localhost:5000/classes/${selectedClass._id}`, {
       method: 'PUT',
@@ -88,7 +84,7 @@ const InstractorClassesPage = () => {
       .catch((error) => {
         console.log('Error updating class:', error);
       });
-  
+
     // Close the modal
     handleCloseModal();
   };
@@ -106,7 +102,6 @@ const InstractorClassesPage = () => {
               <th>Class Name</th>
               <th>Status</th>
               <th>Feedback</th>
-              <th>Total Enrolled Students</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -119,7 +114,6 @@ const InstractorClassesPage = () => {
                 <td>{classItem.name}</td>
                 <td>{classItem.status}</td>
                 <td>{classItem.status === 'denied' || classItem.status === 'approved' ? classItem.feedback : '-'}</td>
-                <td>{classItem.students}</td>
                 <td>
                   <button className="btn btn-primary" onClick={() => handleOpenModal(classItem)}>
                     Update
@@ -166,19 +160,6 @@ const InstractorClassesPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="students">
-              Total Enrolled Students
-            </label>
-            <input
-              type="number"
-              id="students"
-              value={students}
-              onChange={(e) => setStudents(e.target.value)}
-              className="w-full border p-2 rounded"
-              required
-            />
-          </div>
-          <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="thumbnail">
               Thumbnail URL
             </label>
@@ -211,4 +192,4 @@ const InstractorClassesPage = () => {
   );
 };
 
-export default InstractorClassesPage;
+export default InstructorClassesPage;
