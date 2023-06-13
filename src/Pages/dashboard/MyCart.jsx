@@ -69,9 +69,9 @@ const MyCart = () => {
                     <FaTrashAlt />
                   </button>
                 </td>
-                <td>
-                  <Link to={`payment/${item._id}`}><button className="btn btn-warning btn-sm">PAY</button></Link>
-                </td>
+                <Link to={`/dashboard/payment/${item._id}`}>
+               <button className="btn btn-warning btn-sm">PAY</button>
+               </Link>
               </tr>
             ))}
           </tbody>

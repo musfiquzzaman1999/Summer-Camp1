@@ -25,8 +25,10 @@ import AllUsers from './Pages/dashboard/AllUsers/AllUsers';
 import AddClass from './Pages/dashboard/AddClass';
 import ManageClasses from './Pages/dashboard/ManageClasses';
 import InstructorClassesPage from './Pages/dashboard/InstructorClassesPage';
-import PrivateRoute from './Pages/Route/PrivateRoute';
+
 import MyCart from './Pages/dashboard/MyCart';
+
+import Error from './ErrorPages/Error';
 import Payment from './Pages/dashboard/Payment/Payment';
 
 
@@ -36,6 +38,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -62,6 +65,7 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element:<Dashboard></Dashboard>,
+    errorElement: <Error />,
     children:[
       
       {
@@ -82,16 +86,16 @@ const router = createBrowserRouter([
       },
       {
         path:'selected',
-        element:<MyCart></MyCart>
+        element:<MyCart></MyCart>  
       },
       {
         path:'payment/:id',
-        element:<Payment></Payment>,
-        loader:({params})=>fetch(`http://localhost:5000/carts${params.id}`)
-        
+        element:<Payment></Payment>,  
       },
       
+      
     ]
+    
   }
   
 ]);
