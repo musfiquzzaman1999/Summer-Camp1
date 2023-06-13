@@ -1,4 +1,4 @@
-import  { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,7 +8,7 @@ const AddClass = () => {
   const { user } = useContext(AuthContext);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [students, setStudents] = useState('');
+  const [students, setStudents] = useState(0);
   const [thumbnail, setThumbnail] = useState('');
   const [price, setPrice] = useState('');
 
@@ -18,6 +18,11 @@ const AddClass = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (students > 25) {
+      toast.error('You cannot add more than 25 students.', { position: 'top-center' });
+      return;
+    }
 
     // Create class object
     const newClass = {
@@ -39,7 +44,7 @@ const AddClass = () => {
       // Clear form fields
       setName('');
       setDescription('');
-      setStudents('');
+      setStudents(0);
       setThumbnail('');
       setPrice('');
       // Display success toast
@@ -50,10 +55,10 @@ const AddClass = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8 ml-96">
+    <div className="container mx-auto mt-8 px-4 sm:px-8">
       <h2 className="text-2xl font-bold mb-4">Add a Class</h2>
-      <form onSubmit={handleSubmit} className="max-w-md">
-        <div className="mb-4">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md mx-auto">
+        <div>
           <label htmlFor="name" className="block font-bold mb-1">
             Name
           </label>
@@ -66,7 +71,21 @@ const AddClass = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div>
+          <label htmlFor="students" className="block font-bold mb-1">
+            Students
+          </label>
+          <input
+            type="number"
+            id="students"
+            value={students}
+            onChange={(e) => setStudents(Number(e.target.value))}
+            className="border border-gray-400 p-2 w-full"
+            required
+            max={25}
+          />
+        </div>
+        <div className="col-span-2">
           <label htmlFor="description" className="block font-bold mb-1">
             Description
           </label>
@@ -78,20 +97,7 @@ const AddClass = () => {
             required
           ></textarea>
         </div>
-        <div className="mb-4">
-          <label htmlFor="students" className="block font-bold mb-1">
-            Students
-          </label>
-          <input
-            type="text"
-            id="students"
-            value={students}
-            onChange={(e) => setStudents(e.target.value)}
-            className="border border-gray-400 p-2 w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
+        <div className="col-span-2">
           <label htmlFor="thumbnail" className="block font-bold mb-1">
             Thumbnail
           </label>
@@ -104,7 +110,7 @@ const AddClass = () => {
             required
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="instructorName" className="block font-bold mb-1">
             Instructor Name
           </label>
@@ -116,7 +122,7 @@ const AddClass = () => {
             readOnly
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="instructorEmail" className="block font-bold mb-1">
             Instructor Email
           </label>
@@ -128,7 +134,7 @@ const AddClass = () => {
             readOnly
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="instructorPictureURL" className="block font-bold mb-1">
             Instructor Picture
           </label>
@@ -140,7 +146,7 @@ const AddClass = () => {
             readOnly
           />
         </div>
-        <div className="mb-4">
+        <div>
           <label htmlFor="price" className="block font-bold mb-1">
             Price
           </label>
@@ -153,9 +159,14 @@ const AddClass = () => {
             required
           />
         </div>
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-          Add
-        </button>
+        <div className="col-span-2">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full"
+          >
+            Add
+          </button>
+        </div>
       </form>
       <ToastContainer />
     </div>

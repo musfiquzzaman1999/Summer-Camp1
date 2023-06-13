@@ -54,9 +54,44 @@ const AllUsers = () => {
    }
 
 
-    const handleDelete = user => {
+   const handleDelete = user => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You are about to delete ${user.name}. This action cannot be undone.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel'
+    }).then(result => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/users/${user._id}`)
+          .then(() => {
+            refetch();
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: `${user.name} has been deleted!`,
+              showConfirmButton: false,
+              timer: 1500
+            });
+          })
+          .catch(error => {
+            console.error(error);
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'An error occurred while deleting the user.',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          });
+      }
+    });
+  };
 
-    }
 
     return (
         <div className="w-full">

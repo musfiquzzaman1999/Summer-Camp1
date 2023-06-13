@@ -27,6 +27,8 @@ import ManageClasses from './Pages/dashboard/ManageClasses';
 import InstructorClassesPage from './Pages/dashboard/InstructorClassesPage';
 import PrivateRoute from './Pages/Route/PrivateRoute';
 import MyCart from './Pages/dashboard/MyCart';
+import Payment from './Pages/dashboard/Payment/Payment';
+
 
 
 
@@ -61,10 +63,7 @@ const router = createBrowserRouter([
     path: "dashboard",
     element:<Dashboard></Dashboard>,
     children:[
-      // {
-      //   path:'mycart',
-      //   // element:<MyCart></MyCart>
-      // },
+      
       {
         path:'allusers',
         element:<AllUsers></AllUsers>
@@ -84,7 +83,13 @@ const router = createBrowserRouter([
       {
         path:'selected',
         element:<MyCart></MyCart>
-      }
+      },
+      // {
+      //   path:'/payment/:id',
+      //   element:<Payment></Payment>,
+      //   loader:({params})=>fetch(`http://localhost:5000/carts${params.id}`)
+        
+      // },
       
     ]
   }

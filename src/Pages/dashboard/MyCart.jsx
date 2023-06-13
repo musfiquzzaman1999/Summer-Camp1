@@ -1,6 +1,7 @@
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useCart from "../hooks/useCart";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -69,7 +70,7 @@ const MyCart = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-warning btn-sm">PAY</button>
+                  <Link to={`payment/${item._id}`}><button className="btn btn-warning btn-sm">PAY</button></Link>
                 </td>
               </tr>
             ))}
