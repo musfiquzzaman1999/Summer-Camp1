@@ -1,39 +1,66 @@
-import  { useEffect, useState } from 'react';
-import PopularClassCard from './PopularClassCard/PopularClassCard';
+import { Fade } from "react-awesome-reveal";
+// import useClasses from "../../../hooks/useClasses";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const ExampleComponent = () => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState('');
+const PopularClasses = () => {
+  // const [classData] = useClasses()
+  // console.log(classData)
+  const [classesData, setClassesData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/popular-classes');
-        if (response.ok) {
-          const jsonData = await response.json();
-          setData(jsonData);
-        } else {
-          throw new Error('Request failed with status ' + response.status);
-        }
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    fetchData();
+    axios
+      .get("https://summer-camp-school-server-omega.vercel.app/enroll")
+      .then((res) => {
+        setClassesData(res.data);
+      });
   }, []);
 
   return (
-    <div>
-      {error && <p>Error: {error}</p>}
-      <h1 className='text-center text-5xl font-bold mt-10'>Top 6 Classes</h1>
-      <div className='grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1'>
-      {data.map((item) => (
-        <PopularClassCard key={item._id} item={item}>{item.name}{item.students}</PopularClassCard>
-      ))}
+    <div className="mt-12 md:mt-2 lg:mt-2">
+      <Fade direction="right">
+        <div className="my-4 text-center">
+          <h2 className="text-[#EF4444] font-semibold text-xl">
+            Diverse Classes
+          </h2>
+          <h2 className=" font-bold text-5xl mt-2">
+            Discover Your Perfect Martial Arts Class
+          </h2>
+        </div>
+      </Fade>
+      <div className="grid md:grid-cols-3 gap-8 md:mx-20 md:my-20 mx-4 ">
+        {classesData.slice(0, 6).map((data) => (
+          <div key={data._id} className="flex justify-center">
+            <div className="max-w-sm rounded overflow-hidden shadow-lg">
+              <img
+                className="w-full object-cover p-4 "
+                src={data.image}
+                alt="Nature"
+              />
+              <div className="px-6 py-4 space-y-2">
+                <div className="font-bold text-xl">{data.className}</div>
+                <p className="text-gray-700 text-base">
+                  <span className="font-semibold">instructor:</span>{" "}
+                  {data.instructorName}
+                </p>
+                <p className="text-gray-700 text-base">
+                  <span className="font-semibold">Available seats:</span>{" "}
+                  {data.availableSeats}
+                </p>
+                <p className="text-gray-700 text-base">
+                  <span className="font-semibold">Total Enrolled:</span>{" "}
+                  {data.enrolled || "00"}
+                </p>
+                <p className="text-gray-700 text-base">
+                  <span className="font-semibold">Price:</span> {data.price}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default ExampleComponent;
+export default PopularClasses;

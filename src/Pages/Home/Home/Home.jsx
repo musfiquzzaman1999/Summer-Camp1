@@ -1,16 +1,17 @@
+import Hero from "../Hero/Hero";
 import PopularClasses from "../PopularClasses/PopularClasses";
-import PopularInstructor from "../PopularInstactor/PopularInstactor";
-import SliderSection from "../SliderSection/SliderSection";
+import PopularInstructors from "../PopularInstructors/PopularInstructors";
+import Warrior from "../Warrior/Warrior";
 
 
 const Home = () => {
     return (
-        <div>
-           
-           <SliderSection></SliderSection>
-           <PopularClasses></PopularClasses> 
-           <PopularInstructor></PopularInstructor>
-        </div>
+        <>
+            <Hero></Hero>
+            <PopularClasses></PopularClasses>
+            <PopularInstructors></PopularInstructors>
+            <Warrior></Warrior>
+        </>
     );
 };
 

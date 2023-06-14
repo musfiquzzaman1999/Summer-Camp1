@@ -13,14 +13,14 @@ import {
 const queryClient = new QueryClient()
 
 import './index.css'
-import Main from './LayOut/Main';
+import Main from './layouts/Main';
 import Home from './Pages/Home/Home/Home';
 import InstructorsPage from './Pages/Instractor/InstructorsPage';
 import AuthProvider from './providers/AuthProvider';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/SignUp/SignUp';
 import Classes from './Pages/Classes/Classes';
-import Dashboard from './LayOut/DashBoard';
+import Dashboard from './layouts/Dashboard';
 import AllUsers from './Pages/dashboard/AllUsers/AllUsers';
 import AddClass from './Pages/dashboard/AddClass';
 import ManageClasses from './Pages/dashboard/ManageClasses';
