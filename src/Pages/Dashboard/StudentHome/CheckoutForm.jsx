@@ -24,7 +24,7 @@ const CheckoutForm = ({ price, data }) => {
   const [transactionId, setTransactionId] = useState("");
 
   // fetch(
-  //   `https://summer-camp-school-server-omega.vercel.app/classesUpdate/${_id}`,
+  //   `http://localhost:5000/classesUpdate/${_id}`,
   //   {
   //     method: "PATCH",
   //   }
@@ -106,7 +106,7 @@ const CheckoutForm = ({ price, data }) => {
       };
       console.log(payment);
 
-      fetch("https://summer-camp-school-server-omega.vercel.app/payments", {
+      fetch("http://localhost:5000/payments", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payment),
@@ -119,7 +119,7 @@ const CheckoutForm = ({ price, data }) => {
 
     axios
       .delete(
-        `https://summer-camp-school-server-omega.vercel.app/deletedClass/${_id}`
+        `http://localhost:5000/deletedClass/${_id}`
       )
       .then((res) => {
         if (res.data.deletedCount) {

@@ -16,7 +16,7 @@ const ManageClasses = () => {
 
   const handleApproved = (id) => {
     fetch(
-      `https://summer-camp-school-server-omega.vercel.app/classes/approved/${id}`,
+      `http://localhost:5000/classes/approved/${id}`,
       {
         method: "PATCH",
       }
@@ -38,7 +38,7 @@ const ManageClasses = () => {
   };
   const handleDeny = (id) => {
     fetch(
-      `https://summer-camp-school-server-omega.vercel.app/classes/deny/${id}`,
+      `http://localhost:5000/classes/deny/${id}`,
       {
         method: "PATCH",
       }
@@ -65,7 +65,7 @@ const ManageClasses = () => {
     const message = form.message.value;
     const feedData = { message };
     fetch(
-      `https://summer-camp-school-server-omega.vercel.app/classes/feedback/${getId}`,
+      `http://localhost:5000/classes/feedback/${getId}`,
       {
         method: "PATCH",
         headers: { "content-type": "application/json" },

@@ -2,8 +2,6 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 
-const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
-
 const AddClass = () => {
   const { user } = useAuth();
   console.log(user);
@@ -12,51 +10,46 @@ const AddClass = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+  
   const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("image", data.classImage[0]);
-    fetch(img_hosting_url, {
+    const {
+      className,
+      classImage,
+      instructorEmail,
+      instructorName,
+      price,
+      availableSeats,
+    } = data;
+    
+    const classes = {
+      className,
+      classImage,
+      instructorEmail,
+      instructorName,
+      price: parseFloat(price),
+      availableSeats: parseFloat(availableSeats),
+    };
+    
+    console.log(classes);
+    
+    // Add your logic here to save the class details using the provided data.
+    // You can make an API call to save the data to your backend server.
+    // Example code:
+    fetch("http://localhost:5000/classes", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(classes),
     })
       .then((res) => res.json())
-      .then((imageResponse) => {
-        if (imageResponse.success) {
-          const imgURL = imageResponse.data.display_url;
-          const {
-            className,
-            instructorEmail,
-            instructorName,
-            price,
-            availableSeats,
-          } = data;
-          const classes = {
-            className,
-            instructorEmail,
-            instructorName,
-            price: parseFloat(price),
-            availableSeats: parseFloat(availableSeats),
-            image: imgURL,
-          };
-          // console.log(classes);
-          fetch("https://summer-camp-school-server-omega.vercel.app/classes", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(classes),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your work has been saved",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            });
-        }
+      .then((data) => {
+        console.log(data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
@@ -84,16 +77,16 @@ const AddClass = () => {
 
             <div className="w-full text-left space-y-2">
               <label htmlFor="class-image" className="block font-medium">
-                Class Image:
+                Class Image URL:
               </label>
               <input
-                type="file"
+                type="text"
                 id="class-image"
                 {...register("classImage", { required: true })}
                 className="border border-gray-300 px-3 py-2 rounded-lg w-full"
               />
               {errors.classImage && (
-                <p className="text-red-500">Class image is required</p>
+                <p className="text-red-500">Class image URL is required</p>
               )}
             </div>
           </div>

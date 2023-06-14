@@ -24,14 +24,14 @@ const MyClasses = () => {
   // useEffect(() => {
 
   //   fetch(
-  //     `https://summer-camp-school-server-omega.vercel.app/instructorClasses/${user?.email}`
+  //     `http://localhost:5000/instructorClasses/${user?.email}`
   //   )
   //     .then((res) => res.json())
   //     .then((data) => SetMyData(data));
   // }, [user]);
 
   const handleShowFedData = (id) => {
-    fetch(`https://summer-camp-school-server-omega.vercel.app/classes/${id}`)
+    fetch(`http://localhost:5000/classes/${id}`)
       .then((res) => res.json())
       .then((data) => setShowFedData(data));
   };
@@ -43,7 +43,7 @@ const MyClasses = () => {
     const feedData = { className, price };
     console.log(getId, feedData);
     fetch(
-      `https://summer-camp-school-server-omega.vercel.app/classesUpdate/${getId}`,
+      `http://localhost:5000/classesUpdate/${getId}`,
       {
         method: "PATCH",
         headers: { "content-type": "application/json" },

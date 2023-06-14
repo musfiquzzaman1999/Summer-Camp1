@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../../providers/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -21,6 +21,7 @@ const Register = () => {
   const handleShow = () => {
     setShow(!show);
   };
+
   const handleShow2 = () => {
     setShow2(!show2);
   };
@@ -30,40 +31,60 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        updateUserProfile(data.name, data.photoUrl).then(() => {
-          const saveUser = {
-            name: data.name,
-            email: data.email,
-            image: data.photoUrl,
-          };
-          fetch("https://summer-camp-school-server-omega.vercel.app/users", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(saveUser),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              if (data.insertedId) {
+        updateUserProfile(data.name, data.photoUrl)
+          .then(() => {
+            const saveUser = {
+              name: data.name,
+              email: data.email,
+              image: data.photoUrl,
+            };
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                if (data.insertedId) {
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate("/login");
+                }
+              })
+              .catch((error) => {
                 Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Your work has been saved",
-                  showConfirmButton: false,
-                  timer: 1500,
+                  icon: "error",
+                  title: "Error",
+                  text: error.message,
                 });
-                navigate("/login");
-              }
+              });
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: error.message,
             });
-        });
+          });
         logOut();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: error.message,
+        });
       });
   };
+
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen bg-gray-200">
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-1/3"
         onSubmit={handleSubmit(onSubmit)}
@@ -147,12 +168,11 @@ const Register = () => {
             })}
           />
           <Link className="absolute right-3 bottom-5" onClick={handleShow}>
-            {" "}
             {!show ? (
-              <FaEye className="text-primary"></FaEye>
+              <FaEye className="text-primary" />
             ) : (
-              <FaEyeSlash className="text-primary"></FaEyeSlash>
-            )}{" "}
+              <FaEyeSlash className="text-primary" />
+            )}
           </Link>
           {errors.password && (
             <p className="text-red-500 text-xs mt-1">
@@ -180,12 +200,11 @@ const Register = () => {
             })}
           />
           <Link className="absolute right-3 bottom-5" onClick={handleShow2}>
-            {" "}
             {!show2 ? (
-              <FaEye className="text-primary"></FaEye>
+              <FaEye className="text-primary" />
             ) : (
-              <FaEyeSlash className="text-primary"></FaEyeSlash>
-            )}{" "}
+              <FaEyeSlash className="text-primary" />
+            )}
           </Link>
           {errors.confirmPassword && (
             <p className="text-red-500 text-xs mt-1">
@@ -201,38 +220,29 @@ const Register = () => {
             Photo URL
           </label>
           <input
-            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
-              errors.photoUrl ? "border-red-500" : ""
-            }`}
+            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
             type="text"
             placeholder="Photo URL"
-            {...register("photoUrl", {
-              required: "Photo URL is required",
-              pattern: {
-                value: /^(https?:\/\/.*\.(?:png|jpg|jpeg))$/i,
-                message: "Invalid photo URL format",
-              },
-            })}
+            {...register("photoUrl")}
           />
-          {errors.photoUrl && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.photoUrl.message}
-            </p>
-          )}
         </div>
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Register
           </button>
+          <Link
+            className="inline-block align-baseline font-bold text-sm text-primary hover:text-primary-dark"
+            to="/login"
+          >
+            Already have an account? Log in
+          </Link>
         </div>
         <div className="text-center">
-          <SocialLogin></SocialLogin>
-          <div className="divider w-3/4 mx-auto"></div>
-          <div>
-            <Link to="/login">Go to Login Page</Link>
+          <div className="mt-4">
+            <SocialLogin />
           </div>
         </div>
       </form>

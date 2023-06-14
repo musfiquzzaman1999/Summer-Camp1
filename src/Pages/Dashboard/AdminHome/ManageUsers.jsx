@@ -17,7 +17,7 @@ const ManageUsers = () => {
 
   const handleMakeAdmin = (user) => {
     fetch(
-      `https://summer-camp-school-server-omega.vercel.app/users/admin/${user._id}`,
+      `http://localhost:5000/users/admin/${user._id}`,
       {
         method: "PATCH",
       }
@@ -38,7 +38,7 @@ const ManageUsers = () => {
       });
     console.log(user._id);
 
-    //   fetch(`https://summer-camp-school-server-omega.vercel.app/instructor/${user._id}`, {
+    //   fetch(`http://localhost:5000/instructor/${user._id}`, {
     //     method: 'DELETE'
     // })
     // .then(res => res.json())
@@ -51,7 +51,7 @@ const ManageUsers = () => {
   };
   const handleMakeInstructor = (user) => {
     fetch(
-      `https://summer-camp-school-server-omega.vercel.app/users/instructor/${user._id}`,
+      `http://localhost:5000/users/instructor/${user._id}`,
       {
         method: "PATCH",
       }
@@ -77,7 +77,7 @@ const ManageUsers = () => {
       image: user.image,
     };
 
-    fetch(`https://summer-camp-school-server-omega.vercel.app/instructor`, {
+    fetch(`http://localhost:5000/instructor`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(upInstructor),
@@ -92,7 +92,7 @@ const ManageUsers = () => {
 
   const handleDelete = (user) => {
     console.log(user);
-    // fetch(`https://summer-camp-school-server-omega.vercel.app/users/${user._id}`, {
+    // fetch(`http://localhost:5000/users/${user._id}`, {
     //     method: 'DELETE'
     // })
     // .then(res => res.json())

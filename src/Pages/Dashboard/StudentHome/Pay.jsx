@@ -10,7 +10,7 @@ const Pay = () => {
   const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
   useEffect(() => {
     fetch(
-      `https://summer-camp-school-server-omega.vercel.app/selectedClasses/${id.id}`
+      `http://localhost:5000/selectedClasses/${id.id}`
     )
       .then((res) => res.json())
       .then((data) => setTakePrice(data));

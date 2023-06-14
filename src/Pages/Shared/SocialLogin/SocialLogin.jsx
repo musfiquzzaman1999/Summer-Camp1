@@ -4,21 +4,21 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
-  const { googleLogin } = useContext(AuthContext);
+  const { googleSignIn } = useContext(AuthContext); // Updated: googleSignIn instead of googleLogin
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
 
   const handleGoogleLogin = () => {
-    googleLogin().then((result) => {
+    googleSignIn().then((result) => { // Updated: googleSignIn instead of googleLogin
       const loggedInUser = result.user;
       console.log(loggedInUser);
       const saveUser = {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
       };
-      fetch("https://summer-camp-school-server-omega.vercel.app/users", {
+      fetch("http://localhost:5000/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

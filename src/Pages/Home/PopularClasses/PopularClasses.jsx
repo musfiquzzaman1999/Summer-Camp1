@@ -10,7 +10,7 @@ const PopularClasses = () => {
 
   useEffect(() => {
     axios
-      .get("https://summer-camp-school-server-omega.vercel.app/enroll")
+      .get("http://localhost:5000/enroll")
       .then((res) => {
         setClassesData(res.data);
       });

@@ -8,7 +8,7 @@ const Classes = () => {
 
   // useEffect(() => {
   //   fetch(
-  //     "https://summer-camp-school-server-omega.vercel.app/classStatus/approved"
+  //     "http://localhost:5000/classStatus/approved"
   //   )
   //     .then((res) => res.json())
   //     .then((data) => setClassesData(data));
