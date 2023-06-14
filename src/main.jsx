@@ -91,6 +91,7 @@ const router = createBrowserRouter([
       {
         path:'payment/:id',
         element:<Payment></Payment>,  
+       
       },
       
       

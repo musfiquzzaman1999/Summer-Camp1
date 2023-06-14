@@ -2,10 +2,10 @@ import { useContext, useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
-import useCart from "../hooks/useCart";
+import useCart from "../hooks/useClasses";
 
 const Class = ({ item }) => {
-  const { thumbnail, students, price, _id, name, description, instructorName } = item;
+  const { thumbnail, students, price, _id, name,  instructorName } = item;
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [, refetch] = useCart();

@@ -1,19 +1,38 @@
-import { useState } from "react";
+import { Elements } from "@stripe/react-stripe-js";
 import { useEffect } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import CheckoutForm from "./CheckoutForm";
+import { loadStripe } from "@stripe/stripe-js";
+
+
+
+
 
 
 
 const Payment = () => {
-    const [pay,setPay]=useState([]);
-    useEffect(()=>{
-        fetch('http://localhost:5000/carts')
-        .then(res=>res.json())
-        .then(data=>console.log(data))
-    },[])
+   
+const id = useParams();
+  const [cart,setCart] = useState([]);
+  const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
+  useEffect(() => {
+    fetch(
+    `http://localhost:5000/card/${id?.id}`
+    )
+      .then((res) => res.json())
+      .then((data) => setCart(data));
+  }, [id]);
+  
+
+  console.log(cart);
+
     return (
         <div>
            
-            <h2 className="text-3xl"> Teka o teka tumi uira uira aso...</h2>
+           <Elements stripe={stripePromise}>
+        <CheckoutForm price={cart.price} cart={cart}></CheckoutForm>
+      </Elements>
           
         </div>
     );

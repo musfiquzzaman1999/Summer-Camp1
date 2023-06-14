@@ -34,7 +34,7 @@ const AllUsers = () => {
     }
    
    const handleMakeInstractor = user=>{
-    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+    fetch(`http://localhost:5000/${user._id}`, {
             method: 'PATCH'
         })
         .then(res => res.json())
@@ -105,6 +105,7 @@ const AllUsers = () => {
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>status</th>
                             <th>Role Admin</th>
                             <th>Role Instructor</th>
                             <th>Action</th>
@@ -116,6 +117,7 @@ const AllUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
+                                <td>{user.role||"user"}</td>
                                 <td>{ user.role === 'admin' ? 'admin' :
                                     <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-orange-600  text-white"><FaUserShield></FaUserShield></button> 
                                     }</td>

@@ -3,7 +3,7 @@ import { FaHome, FaSignInAlt } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import useAdmin from "../Pages/hooks/useAdmin";
-import useInstructor from "../Pages/hooks/useInstructor";
+import useInstructor from "../Pages/hooks/useInstructorRole";
 
 const Dashboard = () => {
   const { logOut } = useContext(AuthContext);
