@@ -24,7 +24,7 @@ const CheckoutForm = ({ price, data }) => {
   const [transactionId, setTransactionId] = useState("");
 
   // fetch(
-  //   `http://localhost:5000/classesUpdate/${_id}`,
+  //   `https://summercamp-eight.vercel.app/classesUpdate/${_id}`,
   //   {
   //     method: "PATCH",
   //   }
@@ -106,7 +106,7 @@ const CheckoutForm = ({ price, data }) => {
       };
       console.log(payment);
 
-      fetch("http://localhost:5000/payments", {
+      fetch("https://summercamp-eight.vercel.app/payments", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payment),
@@ -119,7 +119,7 @@ const CheckoutForm = ({ price, data }) => {
 
     axios
       .delete(
-        `http://localhost:5000/deletedClass/${_id}`
+        `https://summercamp-eight.vercel.app/deletedClass/${_id}`
       )
       .then((res) => {
         if (res.data.deletedCount) {

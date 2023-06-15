@@ -7,7 +7,7 @@ const SelectedClassesTable = ({ data, index, refetch }) => {
   const handleDelete = (id) => {
     axios
       .delete(
-        `http://localhost:5000/deletedClass/${id}`
+        `https://summercamp-eight.vercel.app/deletedClass/${id}`
       )
       .then((res) => {
         if (res.data.deletedCount) {

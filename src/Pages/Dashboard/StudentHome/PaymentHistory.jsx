@@ -7,7 +7,7 @@ const PaymentHistory = () => {
   // console.log(user)
   useEffect(() => {
     fetch(
-      `http://localhost:5000/payments/${user.email}`
+      `https://summercamp-eight.vercel.app/payments/${user.email}`
     )
       .then((res) => res.json())
       .then((data) => setPayData(data));

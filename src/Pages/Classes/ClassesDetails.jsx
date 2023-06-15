@@ -33,7 +33,7 @@ const ClassesDetails = ({ data }) => {
     };
 
     if (user) {
-      fetch(`http://localhost:5000/selectedClassData`, {
+      fetch(`https://summercamp-eight.vercel.app/selectedClassData`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(newData),

@@ -35,7 +35,7 @@ const AddClass = () => {
     // Add your logic here to save the class details using the provided data.
     // You can make an API call to save the data to your backend server.
     // Example code:
-    fetch("http://localhost:5000/classes", {
+    fetch("https://summercamp-eight.vercel.app/classes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(classes),

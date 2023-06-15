@@ -19,7 +19,7 @@ const MyClasses = () => {
   });
 
   const handleShowFedData = (id) => {
-    fetch(`http://localhost:5000/classes/${id}`)
+    fetch(`https://summercamp-eight.vercel.app/classes/${id}`)
       .then((res) => res.json())
       .then((data) => setShowFedData(data));
   };
@@ -31,7 +31,7 @@ const MyClasses = () => {
     const price = form.price.value;
     const feedData = { className, price };
     console.log(getId, feedData);
-    fetch(`http://localhost:5000/classesUpdate/${getId}`, {
+    fetch(`https://summercamp-eight.vercel.app/classesUpdate/${getId}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(feedData),

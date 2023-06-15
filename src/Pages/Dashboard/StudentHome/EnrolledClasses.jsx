@@ -6,7 +6,7 @@ const EnrolledClasses = () => {
   const { user } = useAuth();
   useEffect(() => {
     fetch(
-      `http://localhost:5000/enrolled/${user.email}`
+      `https://summercamp-eight.vercel.app/enrolled/${user.email}`
     )
       .then((res) => res.json())
       .then((data) => setEnrollData(data));
