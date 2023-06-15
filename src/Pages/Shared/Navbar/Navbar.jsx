@@ -36,7 +36,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
                 <div className="flex items-center gap-4">
                 <img className="w-16" src={logo} alt="" />
-                <h2 className="font-bold text-3xl">TSURUGI</h2>
+                <h2 className="font-bold text-3xl">ExtraLearn</h2>
                 </div>
               </div>
         </Link>

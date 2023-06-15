@@ -38,7 +38,7 @@ const EnrolledClasses = () => {
                 <td>{data.price}</td>
                 <td>{data.transactionId}</td>
                 <td>
-                  <button className="px-4 py-1 bg-red-200 rounded-2xl">
+                  <button className="px-4 py-1  rounded-2xl">
                     Payment Complete
                   </button>
                 </td>

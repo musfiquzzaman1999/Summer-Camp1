@@ -1,7 +1,8 @@
+import AboutUs from "../AboutUs/AboutUs";
 import Hero from "../Hero/Hero";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
-import Warrior from "../Warrior/Warrior";
+
 
 
 const Home = () => {
@@ -10,7 +11,7 @@ const Home = () => {
             <Hero></Hero>
             <PopularClasses></PopularClasses>
             <PopularInstructors></PopularInstructors>
-            <Warrior></Warrior>
+           <AboutUs></AboutUs>
         </>
     );
 };

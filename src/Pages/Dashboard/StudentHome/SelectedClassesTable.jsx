@@ -1,6 +1,6 @@
 // import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { FaCreditCard, FaTrashAlt } from "react-icons/fa";
+import {  FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const SelectedClassesTable = ({ data, index, refetch }) => {
@@ -27,7 +27,7 @@ const SelectedClassesTable = ({ data, index, refetch }) => {
           <td>{data.userEmail}</td>
           <td>
             <Link className="btn btn-ghost bg-orange-600  text-white" to={`/dashboard/pay/${data._id}`}>
-              <FaCreditCard></FaCreditCard>
+              <button>Pay</button>
             </Link>
           </td>
           <td>

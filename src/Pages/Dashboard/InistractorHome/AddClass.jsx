@@ -10,7 +10,7 @@ const AddClass = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const onSubmit = (data) => {
     const {
       className,
@@ -20,7 +20,7 @@ const AddClass = () => {
       price,
       availableSeats,
     } = data;
-    
+
     const classes = {
       className,
       classImage,
@@ -29,9 +29,9 @@ const AddClass = () => {
       price: parseFloat(price),
       availableSeats: parseFloat(availableSeats),
     };
-    
+
     console.log(classes);
-    
+
     // Add your logic here to save the class details using the provided data.
     // You can make an API call to save the data to your backend server.
     // Example code:
@@ -54,103 +54,97 @@ const AddClass = () => {
   };
 
   return (
-    <>
-      <div className="w-3/4 mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center">Add a Class</h1>
+    <div className="max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4 text-center">Add a Class</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div className="flex gap-4">
-            <div className="w-full text-left space-y-2">
-              <label htmlFor="class-name" className="block font-medium">
-                Class name:
-              </label>
-              <input
-                type="text"
-                id="class-name"
-                {...register("className", { required: true })}
-                className="border border-gray-300 px-3 py-2 rounded-lg w-full"
-              />
-              {errors.className && (
-                <p className="text-red-500">Class name is required</p>
-              )}
-            </div>
-
-            <div className="w-full text-left space-y-2">
-              <label htmlFor="class-image" className="block font-medium">
-                Class Image URL:
-              </label>
-              <input
-                type="text"
-                id="class-image"
-                {...register("classImage", { required: true })}
-                className="border border-gray-300 px-3 py-2 rounded-lg w-full"
-              />
-              {errors.classImage && (
-                <p className="text-red-500">Class image URL is required</p>
-              )}
-            </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="flex flex-col space-y-4">
+          <div className="w-full">
+            <label htmlFor="class-name" className="font-medium">
+              Class name:
+            </label>
+            <input
+              type="text"
+              id="class-name"
+              {...register("className", { required: true })}
+              className="border border-gray-300 px-3 py-2 rounded-lg w-full"
+            />
+            {errors.className && (
+              <p className="text-red-500">Class name is required</p>
+            )}
           </div>
 
-          <div className="flex gap-4">
-            <div className="w-full text-left space-y-2">
-              <label htmlFor="instructor-name" className="block font-medium">
-                Instructor name:
-              </label>
-              <input
-                type="text"
-                id="instructor-name"
-                readOnly
-                value={user.displayName}
-                {...register("instructorName", { required: true })}
-                className="border border-gray-300 px-3 py-2 rounded-lg w-full bg-gray-100"
-              />
-            </div>
-
-            <div className="w-full text-left space-y-2">
-              <label htmlFor="instructor-email" className="block font-medium">
-                Instructor email:
-              </label>
-              <input
-                type="email"
-                id="instructor-email"
-                readOnly
-                value={user.email}
-                {...register("instructorEmail", { required: true })}
-                className="border border-gray-300 px-3 py-2 rounded-lg w-full bg-gray-100"
-              />
-            </div>
+          <div className="w-full">
+            <label htmlFor="class-image" className="font-medium">
+              Class Image URL:
+            </label>
+            <input
+              type="text"
+              id="class-image"
+              {...register("classImage", { required: true })}
+              className="border border-gray-300 px-3 py-2 rounded-lg w-full"
+            />
+            {errors.classImage && (
+              <p className="text-red-500">Class image URL is required</p>
+            )}
           </div>
 
-          <div className="flex gap-4">
-            <div className="w-full text-left space-y-2">
-              <label htmlFor="available-seats" className="block font-medium">
-                Available seats:
-              </label>
-              <input
-                type="number"
-                id="available-seats"
-                {...register("availableSeats", { required: true })}
-                className="border border-gray-300 px-3 py-2 rounded-lg w-full"
-              />
-              {errors.availableSeats && (
-                <p className="text-red-500">Available seats is required</p>
-              )}
-            </div>
+          <div className="w-full">
+            <label htmlFor="instructor-name" className="font-medium">
+              Instructor name:
+            </label>
+            <input
+              type="text"
+              id="instructor-name"
+              readOnly
+              value={user.displayName}
+              {...register("instructorName", { required: true })}
+              className="border border-gray-300 px-3 py-2 rounded-lg bg-gray-100 w-full"
+            />
+          </div>
 
-            <div className="w-full text-left space-y-2">
-              <label htmlFor="price" className="block font-medium">
-                Price:
-              </label>
-              <input
-                type="text"
-                id="price"
-                {...register("price", { required: true })}
-                className="border border-gray-300 px-3 py-2 rounded-lg w-full"
-              />
-              {errors.price && (
-                <p className="text-red-500">Price is required</p>
-              )}
-            </div>
+          <div className="w-full">
+            <label htmlFor="instructor-email" className="font-medium">
+              Instructor email:
+            </label>
+            <input
+              type="email"
+              id="instructor-email"
+              readOnly
+              value={user.email}
+              {...register("instructorEmail", { required: true })}
+              className="border border-gray-300 px-3 py-2 rounded-lg bg-gray-100 w-full"
+            />
+          </div>
+
+          <div className="w-full">
+            <label htmlFor="available-seats" className="font-medium">
+              Available seats:
+            </label>
+            <input
+              type="number"
+              id="available-seats"
+              {...register("availableSeats", { required: true })}
+              className="border border-gray-300 px-3 py-2 rounded-lg w-full"
+            />
+            {errors.availableSeats && (
+              <p className="text-red-500">Available seats is required</p>
+            )}
+          </div>
+
+          <div className="w-full">
+            <label htmlFor="price" className="font-medium">
+              Price:
+            </label>
+            <input
+              type="text"
+              id="price"
+              {...register("price", { required: true })}
+              className="border border-gray-300 px-3 py-2 rounded-lg w-full"
+            />
+            {errors.price && (
+              <p className="text-red-500">Price is required</p>
+            )}
           </div>
 
           <div>
@@ -161,9 +155,9 @@ const AddClass = () => {
               Add
             </button>
           </div>
-        </form>
-      </div>
-    </>
+        </div>
+      </form>
+    </div>
   );
 };
 

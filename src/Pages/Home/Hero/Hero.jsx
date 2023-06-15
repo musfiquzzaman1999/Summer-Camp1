@@ -1,17 +1,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+import banner1 from "../../../assets/banner1.jpg";
+import banner2 from "../../../assets/banner2.jpg";
+import banner3 from "../../../assets/banner3.jpg";
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
+// Import Swiper styles
+import "swiper/css";
 
-import banner1 from "../../../assets/Banner1.png";
-import banner2 from "../../../assets/Banner2.png";
-import banner3 from "../../../assets/Banner3.png";
-import { Fade } from "react-awesome-reveal";
+// Install Swiper modules
+SwiperCore.use([Autoplay, Pagination, Navigation]);
+
 const Hero = () => {
   return (
     <div className="h-screen">
@@ -26,95 +27,62 @@ const Hero = () => {
           clickable: true,
         }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="md:flex items-center md:mx-20">
-          <Fade className="md:w-[50%]" direction="left">
-            <div className=" md:ml-40 text-center space-y-8">
-              <h3 className="font-semibold text-red-500 text-2xl ">
-                Discover the Art of Self-Defense
-              </h3>
-              <h2 className="font-bold text-4xl md:text-6xl w-3/4 mx-auto">
-                Train with Experts, Master Martial Arts
-              </h2>
-              <p className="w-3/4 mx-auto">
-                Unlock your potential and learn the ancient art of self-defense
-                at our martial arts school. Our experienced instructors are
-                dedicated to helping you develop discipline.
-              </p>
-              <div className="flex row md:gap-12 justify-center my-4">
-                <button className="MBtn">Get Started</button>
-                <button className="text-red-500 font-semibold ml-4 px-6 md:py-1 md:rounded md:hover:bg-[#EF4444] md:hover:text-white md:border-[#EF4444] md:border">
-                  learn more
-                </button>
+          <div
+            className="relative bg-cover bg-center h-screen"
+            style={{ backgroundImage: `url(${banner1})` }}
+          >
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+              <div className="text-center space-y-8 text-white">
+                
+                <h2 className="font-bold text-4xl md:text-6xl w-3/4 mx-auto">
+                Join Our Singing Class and Discover Your Musical Potential
+                </h2>
+                <p className="w-3/4 mx-auto">
+                Experience the joy of singing and enhance your vocal skills in our dynamic and supportive singing class. Explore various genres and techniques while receiving expert guidance from our talented instructors.
+                </p>
+                
               </div>
-            </div>
-            </Fade>
-            <div className="w-[50%] mx-auto">
-              <img src={banner1} alt="" />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-        
-          <div className="md:flex items-center md:mx-20">
-          <Fade className="md:w-[50%]" direction="left">
-            <div className=" md:ml-40 text-center space-y-8">
+          <div
+            className="relative bg-cover bg-center h-screen"
+            style={{ backgroundImage: `url(${banner2})` }}
+          >
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+              <div className="text-center space-y-8 text-white">
               
-                <h3 className="font-semibold text-red-500 text-2xl ">
-                  Build Strength and Confidence
-                </h3>
-              
-              <h2 className="font-bold text-4xl md:text-6xl w-3/4 mx-auto">
-                Forge Your Path, Become a Martial Artist
-              </h2>
-              <p className="w-3/4 mx-auto">
-                Gain unwavering confidence and inner strength through martial
-                arts training. Our school provides a nurturing environment where
-                you can develop your skills and cultivate self-assurance.
-              </p>
-              <div className="flex row md:gap-12 justify-center my-4">
-                <button className="MBtn">Get Started</button>
-                <button className="text-red-500 font-semibold ml-4 px-6 md:py-1 md:rounded md:hover:bg-[#EF4444] md:hover:text-white md:border-[#EF4444] md:border">
-                  learn more
-                </button>
+                <h2 className="font-bold text-4xl md:text-6xl w-3/4 mx-auto">
+                Dance to the Rhythm of Your Heart
+                </h2>
+                <p className="w-3/4 mx-auto">
+                Experience the magic of dance and express yourself through movement in our energetic and inclusive dance class. Explore various dance styles, build strength, coordination, and unleash your inner performer
+                </p>
+                
               </div>
-            </div>
-            </Fade>
-            <div className="w-[50%] mx-auto">
-              <img src={banner2} alt="" />
             </div>
           </div>
-          
         </SwiperSlide>
         <SwiperSlide>
-          <div className="md:flex items-center md:mx-20">
-          <Fade className="md:w-[50%]" direction="left">
-            <div className=" md:ml-40 text-center space-y-8">
-              <h3 className="font-semibold text-red-500 text-2xl ">
-                Empower Your Body and Mind
-              </h3>
-              <h2 className="font-bold text-4xl md:text-6xl w-3/4 mx-auto">
-                Elevate Your Skills, Unleash Your Potential
-              </h2>
-              <p className="w-3/4 mx-auto">
-                Experience the power of martial arts as you strengthen your body
-                and sharpen your mind. Our martial arts school offers a
-                comprehensive curriculum that combines physical fitness, mental
-                focus.
-              </p>
-              <div className="flex row md:gap-12 justify-center my-4">
-                <button className="MBtn">Get Started</button>
-                <button className="text-red-500 font-semibold ml-4 px-6 md:py-1 md:rounded md:hover:bg-[#EF4444] md:hover:text-white md:border-[#EF4444] md:border">
-                  learn more
-                </button>
+          <div
+            className="relative bg-cover bg-center h-screen"
+            style={{ backgroundImage: `url(${banner3})` }}
+          >
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+              <div className="text-center space-y-8 text-white">
+                
+                <h2 className="font-bold text-4xl md:text-6xl w-3/4 mx-auto">
+                Find Balance and Inner Peace
+                </h2>
+                <p className="w-3/4 mx-auto">
+                Immerse yourself in the transformative practice of yoga in our serene and welcoming studio. Cultivate strength, flexibility, and mindfulness as you connect with your breath and discover harmony within.
+                </p>
+                
               </div>
-            </div>
-            </Fade>
-            <div className="w-[50%] mx-auto">
-              <img src={banner3} alt="" />
             </div>
           </div>
         </SwiperSlide>

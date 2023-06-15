@@ -4,15 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
 const Classes = () => {
-  // const [classesData, setClassesData] = useState([]);
-
-  // useEffect(() => {
-  //   fetch(
-  //     "http://localhost:5000/classStatus/approved"
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => setClassesData(data));
-  // }, []);
+ 
 
   const [axiosSecure] = useAxiosSecure();
   const { data: data = [] } = useQuery({

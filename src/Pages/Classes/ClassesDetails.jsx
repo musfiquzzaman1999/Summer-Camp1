@@ -32,17 +32,19 @@ const ClassesDetails = ({ data }) => {
     };
 
     if (user) {
-      fetch(
-        `http://localhost:5000/selectedClassData`,
-        {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(newData),
-        }
-      )
+      fetch(`http://localhost:5000/selectedClassData`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(newData),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            Swal.fire({
+              icon: "success",
+              title: "Selection Successful",
+              text: "You have successfully selected the class.",
+            });
             console.log(data);
           }
         });
@@ -108,7 +110,7 @@ const ClassesDetails = ({ data }) => {
                 {" "}
                 <button
                   disabled
-                  className="py-3 px-6 bg-red-300 text-white rounded-xl transition duration-500"
+                  className="py-3 px-6 bg-blue-300 text-white rounded-xl transition duration-500"
                 >
                   Select Now
                 </button>
@@ -118,7 +120,7 @@ const ClassesDetails = ({ data }) => {
                 {" "}
                 <button
                   onClick={() => [handleSelect(data)]}
-                  className="py-3 px-6 bg-red-400 text-white rounded-xl hover:bg-red-500 transition duration-500"
+                  className="py-3 px-6 bg-blue-400 text-white rounded-xl hover:bg-blue-500 transition duration-500"
                 >
                   Select Now
                 </button>

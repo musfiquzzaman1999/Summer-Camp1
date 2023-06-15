@@ -5,11 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyClasses = () => {
-  // const [myData, SetMyData] = useState([]);
   const [showFedData, setShowFedData] = useState([]);
   const [getId, setGetId] = useState("");
   const { user } = useAuth();
-  //   console.log(user);
 
   const [axiosSecure] = useAxiosSecure();
   const { data: data = [], refetch } = useQuery({
@@ -19,37 +17,25 @@ const MyClasses = () => {
       return res.data;
     },
   });
-  // console.log(data)
-
-  // useEffect(() => {
-
-  //   fetch(
-  //     `http://localhost:5000/instructorClasses/${user?.email}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => SetMyData(data));
-  // }, [user]);
 
   const handleShowFedData = (id) => {
     fetch(`http://localhost:5000/classes/${id}`)
       .then((res) => res.json())
       .then((data) => setShowFedData(data));
   };
-  //   console.log(showFedData)
+
   const handleUpdate = (e) => {
+    e.preventDefault();
     const form = e.target;
     const className = form.text.value;
     const price = form.price.value;
     const feedData = { className, price };
     console.log(getId, feedData);
-    fetch(
-      `http://localhost:5000/classesUpdate/${getId}`,
-      {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(feedData),
-      }
-    )
+    fetch(`http://localhost:5000/classesUpdate/${getId}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(feedData),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -93,14 +79,14 @@ const MyClasses = () => {
                         window.my_modal_2.showModal(),
                         handleShowFedData(data._id),
                       ]}
-                      className="btn btn-ghost bg-orange-600  text-white"
+                      className="btn btn-ghost bg-orange-600 text-white"
                     >
                       <FaListAlt></FaListAlt>
                     </button>
                   </td>
                   <td>
                     <button
-                    className="btn btn-ghost bg-orange-600  text-white"
+                      className="btn btn-ghost bg-orange-600 text-white"
                       onClick={() => [
                         window.my_modal_1.showModal(),
                         setGetId(data._id),
@@ -119,9 +105,14 @@ const MyClasses = () => {
           <form method="dialog" className="modal-box">
             <h3 className="font-bold text-lg">Feedback</h3>
             <p className="py-4">{showFedData?.feedback?.message}</p>
-          </form>
-          <form method="dialog" className="modal-backdrop">
-            <button>close</button>
+            <div className="modal-action">
+              <button
+                onClick={() => window.my_modal_2.close()}
+                className="btn btn-primary"
+              >
+                Close
+              </button>
+            </div>
           </form>
         </dialog>
         {/* update modal body */}
@@ -129,7 +120,7 @@ const MyClasses = () => {
           <form method="dialog" onSubmit={handleUpdate} className="modal-box">
             <div>
               <label htmlFor="text" className="text-gray-700 font-bold mb-2">
-                class Name:
+                Class Name:
               </label>
               <input
                 id="text"
@@ -150,9 +141,11 @@ const MyClasses = () => {
               ></input>
             </div>
             <div className="modal-action">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Submit</button>
+              <button className="btn btn-primary">Submit</button>
             </div>
+          </form>
+          <form method="dialog" className="modal-backdrop">
+            <button onClick={() => window.my_modal_1.close()}>Close</button>
           </form>
         </dialog>
       </div>
