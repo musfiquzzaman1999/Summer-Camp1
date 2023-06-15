@@ -92,24 +92,24 @@ const ManageUsers = () => {
 
   const handleDelete = (user) => {
     console.log(user);
-    // fetch(`http://localhost:5000/users/${user._id}`, {
-    //     method: 'DELETE'
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-    //     console.log(data)
-    //     if(data.deletedCount>0){
-    //         refetch();
-    //         // currentUserDelete()
-    //         Swal.fire({
-    //             position: 'top-end',
-    //             icon: 'success',
-    //             title: `${user.name} is an Instructor Now!`,
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //           })
-    //     }
-    // })
+    fetch(`http://localhost:5000/users/${user._id}`, {
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        if(data.deletedCount>0){
+            refetch();
+            // currentUserDelete()
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: `${user.name} is an Instructor Now!`,
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
+    })
   };
 
   return (

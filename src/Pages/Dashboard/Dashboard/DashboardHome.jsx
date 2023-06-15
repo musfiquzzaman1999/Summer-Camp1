@@ -1,9 +1,7 @@
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructorRole from "../../../hooks/useInstructorRole";
 import { FaUsers, FaChalkboardTeacher, FaUserShield } from "react-icons/fa";
-import d1 from "../../../assets/d1.svg";
-import d2 from "../../../assets/d2.svg";
-import d3 from "../../../assets/d3.svg";
+
 
 const DashboardHome = () => {
   const [isAdmin] = useAdmin();
@@ -19,15 +17,7 @@ const DashboardHome = () => {
     }
   };
 
-  const renderDashboardImage = () => {
-    if (isAdmin) {
-      return <img className="w-[50%]" src={d3} alt="" />;
-    } else if (isInstructor) {
-      return <img className="w-[50%]" src={d1} alt="" />;
-    } else {
-      return <img className="w-[50%]" src={d2} alt="" />;
-    }
-  };
+  
 
   return (
     <div className="h-screen bg-gray-100">
@@ -74,10 +64,8 @@ const DashboardHome = () => {
             </div>
           </div>
 
-          {/* User Chart */}
-          <div className="flex justify-center items-center mt-16">
-            {renderDashboardImage()}
-          </div>
+         
+          
         </div>
       </div>
     </div>

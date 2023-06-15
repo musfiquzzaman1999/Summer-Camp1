@@ -32,7 +32,7 @@ Popular classes offer engaging and high-quality learning experiences <br /> in v
               <div className="max-w-sm rounded overflow-hidden shadow-lg">
                 <img
                   className="w-full h-48 object-cover"
-                  src={data.image}
+                  src={data.classImage}
                   alt="Class"
                 />
                 <div className="px-6 py-4 space-y-2">
@@ -50,7 +50,7 @@ Popular classes offer engaging and high-quality learning experiences <br /> in v
                     {data.enrolled || "00"}
                   </p>
                   <p className="text-gray-700">
-                    <span className="font-semibold">Price:</span> {data.price}
+                    <span className="font-semibold">Price: $</span> {data.price}
                   </p>
                 </div>
               </div>

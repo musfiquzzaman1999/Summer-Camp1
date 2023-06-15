@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import useInstructorRole from "../../hooks/useInstructorRole";
 
 const ClassesDetails = ({ data }) => {
+  console.log(data)
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructorRole();
@@ -69,7 +70,7 @@ const ClassesDetails = ({ data }) => {
         >
           <img
             className="w-full object-cover rounded-md p-4"
-            src={data.image}
+            src={data.classImage}
             alt="Nature"
           />
           <div className="px-6 py-4 space-y-2">
@@ -101,7 +102,7 @@ const ClassesDetails = ({ data }) => {
                   : "text-gray-700 text-base"
               }
             >
-              <span className="font-semibold">Price:</span> {data.price}
+              <span className="font-semibold">Price: $</span> {data.price}
             </p>
           </div>
           <div className="text-center my-8">
